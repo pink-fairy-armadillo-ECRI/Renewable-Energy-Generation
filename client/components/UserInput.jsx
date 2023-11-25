@@ -28,7 +28,6 @@ const UserInput = (props) => {
               <option></option>
               <option></option>
               <option></option>
-              <option></option>
               {/* {<option></option>} */}
               {/* {arrayOfStates.filter(()).map()} */}
             </select>}
