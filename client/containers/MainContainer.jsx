@@ -6,8 +6,8 @@ import ChartContainer from './ChartContainer.jsx';
 
 const MainContainer = () => {
   // add pertinent state here
-  const totalCards = useSelector(state => state.markets.totalCards); 
-  
+  // const totalCards = useSelector(state => state.markets.totalCards); 
+
   return(
     <div className='main-container'>
       {<InputContainer />}
