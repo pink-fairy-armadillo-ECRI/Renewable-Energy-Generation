@@ -27,7 +27,7 @@ powerController.getStates = async (req, res, next) => {
     res.locals.states = result;
     //pass "states" data on
     console.log('res.locals.states', res.locals.states)
-    return next(res.locals.states)
+    return next();
   } catch {
     //FILL THIS OUT WITH AN ERROR
     return next({
@@ -36,12 +36,6 @@ powerController.getStates = async (req, res, next) => {
         message: { err: 'An error occured loading the application' },
       })
   }
-    
-    //State list get method
-  
-        //SELECT DISTINCT power_plants."State" FROM power_plants ORDER BY power_plants."State" ASC' ;
-
-
 }
 
 

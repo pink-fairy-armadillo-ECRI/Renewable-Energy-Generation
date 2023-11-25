@@ -13,9 +13,10 @@ app.use(express.json());
 //serve the root domain when app is loaded
 app.get('/', powerController.getStates, (req, res) => {
     console.log("done!")
-    res.status(200).sendFile(path.join(__dirname, '../client/index.html').json(res.locals.states))
-    //add a query to pull US states to populate dropdown
+    res.status(200).sendFile(path.join(__dirname, '../client/index.html')).send(res.locals.states)
 });
+
+// .json(res.locals.states)
 
 //POST request for user-selected US state
 // app.post('/state', powerController.loadState, (req, res)=>{
