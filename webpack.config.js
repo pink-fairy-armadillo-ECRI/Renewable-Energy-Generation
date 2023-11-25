@@ -63,7 +63,8 @@ export default {
       '/watch-list-data': 'http://localhost:3000'
     },
     static: {
-      directory: 'C:\\Users\\Final\\OneDrive\\Desktop\\Visual Studio Codes\\CodeSmith\\stock-chart\\dist',
+      publicPath: '/',
+      directory: path.join(__dirname, 'dist'),
     },
     compress: true,
     port: 8080,
