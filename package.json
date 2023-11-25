@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack serve --hot --progress",
+    "start": "concurrently \"nodemon server.js\" \"webpack serve --hot --progress\"",
     "dev": "concurrently  \"cross-env NODE_ENV=development && nodemon server/index.js\" \"cross-env NODE_ENV=development && webpack serve\""
   },
   "keywords": [],
@@ -32,6 +32,9 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "pg": "^8.11.3"
   }
 }

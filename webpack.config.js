@@ -21,8 +21,7 @@ module.exports = {
     //each rule will scan the dist folder
     //and evaluate the contents of a given module based on
     //the 'test' key, which is usually a regex expression
-    //eg, need rules for js/jsx, json, 
-    //TODO: add rule for css, scss, sass
+    //eg, need rules for js/jsx, json, scss/sass, others?
     //TODO: add rules for any other filetypes we don't have yet
     rules: [
       {
@@ -47,7 +46,19 @@ module.exports = {
       },
       {//assets module: deals with static files}
       },
-      {//CSS & SCSS & SASS file rule
+      //CSS & SCSS & SASS
+      {
+        test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
+        use: [
+          //Creates 'style' nodes from JS strings
+          'style-loader',
+
+          //Translates CSS into CommonJS (?)
+          'css-loader',
+
+          //Compiles Sass to CSS
+          'sass-loader',
+        ],
       },
     ],
   },
