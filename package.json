@@ -1,0 +1,16 @@
+{
+  "name": "scratch-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently  \"cross-env NODE_ENV=development && nodemon server/index.js\" \"cross-env NODE_ENV=development && webpack serve\""
+  }, 
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "Dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
