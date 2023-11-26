@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { fetchStates } from '../actions/stateActions.js'
 const UserInput = (props) => {
   const { states } = props;
   const [inputValue, setInputValue] = useState('');
-
   // SELECT table FROM database WHERE state LIKE 'AL%'
 
   const handleInputChange = (e) => {
@@ -25,10 +24,6 @@ const UserInput = (props) => {
 
             {
             <select id="states">
-              <option></option>
-              <option></option>
-              <option></option>
-              <option></option>
               {/* {<option></option>} */}
               {/* {arrayOfStates.filter(()).map()} */}
             </select>}

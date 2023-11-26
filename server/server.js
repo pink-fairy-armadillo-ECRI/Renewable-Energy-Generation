@@ -19,10 +19,10 @@ app.get('/', powerController.getStates, (req, res) => {
 // .json(res.locals.states)
 
 //POST request for user-selected US state
-// app.post('/state', powerController.loadState, (req, res)=>{
-//     console.log("DONE!!")
-//     res.status(200).json(res.locals.states)  //send back a status code and an array of state strings
-// });
+app.post('/state', powerController.loadState, (req, res)=>{
+    console.log("DONE!!")
+    res.status(200).json(res.locals.states)  //send back a status code and an array of state strings
+});
 
 //POST request for user-selected calculation (eg, percentage)
 
