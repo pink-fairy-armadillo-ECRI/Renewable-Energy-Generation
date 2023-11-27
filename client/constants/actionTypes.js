@@ -1,0 +1,3 @@
+export const ADD_MARKET = "ADD_MARKET";
+export const UPDATE_CHART_DATA = "UPDATE_CHART_DATA";
+export const GET_RENUABLE = "GET_RENUABLE"
