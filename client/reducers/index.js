@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import dataReducer from './userReducer';
+import statesReducer from './stateReducer';
 import chartReducer from './chartReducer';
 
 const reducers = combineReducers({
   // if we had other reducers, they would go here
-  data: dataReducer,
+  states: statesReducer,
   chart: chartReducer,
 });
 

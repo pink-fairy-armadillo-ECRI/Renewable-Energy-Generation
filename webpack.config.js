@@ -47,19 +47,19 @@ module.exports = {
       {//assets module: deals with static files}
       },
       //CSS & SCSS & SASS
-      {
-        test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
-        use: [
-          //Creates 'style' nodes from JS strings
-          'style-loader',
+      // {
+      //   test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
+      //   use: [
+      //     //Creates 'style' nodes from JS strings
+      //     'style-loader',
 
-          //Translates CSS into CommonJS (?)
-          'css-loader',
+      //     //Translates CSS into CommonJS (?)
+      //     'css-loader',
 
-          //Compiles Sass to CSS
-          'sass-loader',
-        ],
-      },
+      //     //Compiles Sass to CSS
+      //     'sass-loader',
+      //   ],
+      // },
     ],
   },
   plugins: [
@@ -74,9 +74,9 @@ module.exports = {
 
   //configure the webpack development environment server '
   devServer: {
-    // proxy: {
-    //   '/watch-list-data': 'http://localhost:3000'
-    // },
+    proxy: {
+      '/watch-list-data': 'http://localhost:3000'
+    },
     static: {
       publicPath: '/',
       directory: path.join(__dirname, 'dist'),

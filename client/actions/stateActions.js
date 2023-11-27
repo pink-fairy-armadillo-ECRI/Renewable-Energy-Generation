@@ -1,4 +1,5 @@
-import * as types from '../constants/userTypes';
+import * as types from '../constants/stateTypes';
+import axios from 'axios';
 /*************************FETCH STATUS TO GET 52 STATES*************************/
 
 /********************REQUEST STATUS********************/
@@ -27,11 +28,11 @@ export const fetchStateFailure = error => {
 /********************DISPATCHED METHOD********************/
 export const fetchStates = () => {
   return (dispatch) => {
-    dispatch(fetchUsersRequest)
-    axios.get('/states')
+    dispatch(fetchStateRequest)
+    axios.get('/state')
       .then(response => {
         const users = response.data;
-        dispatch(fetchUsersSuccess(users))
+        dispatch(fetchStatesSuccess(users))
       })
       .catch(error => {
         const errorMsg = error.message;

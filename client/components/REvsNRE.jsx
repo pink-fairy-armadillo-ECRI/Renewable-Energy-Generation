@@ -4,24 +4,60 @@ import * as types from '../constants/actionTypes';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
-  const { chartData } = props;
+  // const { chartData } = props;
+  const chartData = [25,75];
 
   useEffect(() => {
     // Create or update the chart when the component mounts
-    const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('REvsNREChart');
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Label 1', 'Label 2', 'Label 3'],
+        labels: ['RE', 'NRE'],
         datasets: [
           {
-            label: 'My Chart',
-            data: chartData,
-            borderColor: 'rgba(75, 192, 192, 1)',
+            label: 'Renewable Energy (RE)',
+            data: [chartData[0]],
+            borderColor: 'rgb(50,205,50)',
+            backgroundColor: 'rgb(50,205,50)',
             borderWidth: 1,
-            fill: false,
+          },
+          {
+            label: 'Non-renewable Energy (NRE)',
+            data: [null, chartData[1]],
+            borderColor: 'rgb(220,20,60)',
+            backgroundColor: 'rgb(220,20,60)',
+            borderWidth: 1,
           },
         ],
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            max: 100,
+            min: 0,
+            ticks: {
+              callback: (value) => {
+                return value + '%';
+              },
+            },
+          },
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              // Modifies the info when hovering over data
+              label: function (context) {
+                const datasetLabel = context.dataset.label || '';
+                const value = context.parsed.y || 0;
+                return `${datasetLabel}: ${value}%`;
+              },
+            },
+          },
+        },
       },
     });
 
@@ -33,7 +69,7 @@ const REvsNRE = (props) => {
 
   return(
     <div>
-      <canvas id="myChart" width="400" height="400"></canvas>
+      <canvas id="REvsNREChart" width="4" height="1"></canvas>
     </div>
   )
 }
