@@ -75,7 +75,7 @@ module.exports = {
   //configure the webpack development environment server '
   devServer: {
     proxy: {
-      '/watch-list-data': 'http://localhost:3000',
+      '/api': 'http://localhost:3000'
     },
     static: {
       publicPath: '/',
