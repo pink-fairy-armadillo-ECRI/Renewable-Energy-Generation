@@ -29,7 +29,7 @@ export const fetchStateFailure = error => {
 export const fetchStates = () => {
   return (dispatch) => {
     dispatch(fetchStateRequest)
-    axios.get('/state')
+    axios.get('/api/states')
       .then(response => {
         const users = response.data;
         dispatch(fetchStatesSuccess(users))

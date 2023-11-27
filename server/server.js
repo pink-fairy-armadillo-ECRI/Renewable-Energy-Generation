@@ -6,16 +6,19 @@ const powerController = require('./controllers/powerController.js')
 
 //parse JSON incoming request
 app.use(express.json());
+const statesRouter = express.Router()
+app.use('/api/states', statesRouter)
+
 
 //serve the root domain when app is loaded
-app.get('/states', powerController.getStates, (req, res) => {
+statesRouter.get('/', powerController.getStates, (req, res) => {
     //send 200 status, serve index.html file, and send array list of states to client
     res.status(200).sendFile(path.join(__dirname, '../client/index.html')).send(res.locals.states);
 });
 
 
 //POST request for user-selected US state - returns object with two properties, renewable energy and non-renewable energy generation
-app.post('/states/data', powerController.loadState, (req, res)=>{
+statesRouter.post('/data', powerController.loadState, (req, res)=>{
     //send back a status code and the breakdown of renewables vs non-renewable energy gen in user selected state
     res.status(200).json(res.locals.stateData);
 });

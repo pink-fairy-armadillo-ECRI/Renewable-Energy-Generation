@@ -4,8 +4,8 @@ import * as types from '../constants/actionTypes';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
-  // const { chartData } = props;
-  const chartData = [25,75];
+  const { chartData } = props;
+  // const chartData = [25,75];
 
   useEffect(() => {
     // Create or update the chart when the component mounts
@@ -17,14 +17,14 @@ const REvsNRE = (props) => {
         datasets: [
           {
             label: 'Renewable Energy (RE)',
-            data: [chartData[0]],
+            data: [chartData.re],
             borderColor: 'rgb(50,205,50)',
             backgroundColor: 'rgb(50,205,50)',
             borderWidth: 1,
           },
           {
             label: 'Non-renewable Energy (NRE)',
-            data: [null, chartData[1]],
+            data: [null, chartData.nre],
             borderColor: 'rgb(220,20,60)',
             backgroundColor: 'rgb(220,20,60)',
             borderWidth: 1,
