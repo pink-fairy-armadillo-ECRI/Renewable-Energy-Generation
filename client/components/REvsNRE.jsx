@@ -7,12 +7,7 @@ import * as types from '../constants/actionTypes';
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
   const chartData = useSelector(state => state.states.data);
-//console.log('this is chartData', chartData);
-for (let key in chartData.percents) {
-  if (!chartData.percents[key]) {
-    chartData.percents[key] = 0
-  } else chartData.percents[key] = chartData.percents[key]
-}
+
   useEffect(() => {
     console.log(chartData);
     // Create or update the chart when the component mounts
@@ -54,6 +49,11 @@ for (let key in chartData.percents) {
           },
         },
         plugins: {
+          title: {
+            display: true,
+            text: 'Percent Non-renewable vs Renewable Energy Generation by State',
+            fontSize: 10,
+          },
           tooltip: {
             callbacks: {
               // Modifies the info when hovering over data
