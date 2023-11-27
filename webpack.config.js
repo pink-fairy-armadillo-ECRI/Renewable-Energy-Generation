@@ -47,19 +47,19 @@ module.exports = {
         //assets module: deals with static files}
       },
       //CSS & SCSS & SASS
-      {
-        test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
-        use: [
-          //Creates 'style' nodes from JS strings
-          'style-loader',
+      // {
+      //   test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
+      //   use: [
+      //     //Creates 'style' nodes from JS strings
+      //     'style-loader',
 
-          //Translates CSS into CommonJS (?)
-          'css-loader',
+      //     //Translates CSS into CommonJS (?)
+      //     'css-loader',
 
-          //Compiles Sass to CSS
-          'sass-loader',
-        ],
-      },
+      //     //Compiles Sass to CSS
+      //     'sass-loader',
+      //   ],
+      // },
     ],
   },
   plugins: [
@@ -85,3 +85,5 @@ module.exports = {
     port: 8081,
   },
 };
+
+

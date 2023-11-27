@@ -2,11 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 import * as types from '../constants/actionTypes';
+//import './styles.scss';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
   const chartData = useSelector(state => state.states.data);
-
+//console.log('this is chartData', chartData);
+for (let key in chartData.percents) {
+  if (!chartData.percents[key]) {
+    chartData.percents[key] = 0
+  } else chartData.percents[key] = chartData.percents[key]
+}
   useEffect(() => {
     console.log(chartData);
     // Create or update the chart when the component mounts
@@ -14,7 +20,7 @@ const REvsNRE = (props) => {
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['RE', 'NRE'],
+        labels: ['Renewable Energy Generation', 'Non-Renewable Energy Generation'],
         datasets: [
           {
             label: 'Renewable Energy (RE)',

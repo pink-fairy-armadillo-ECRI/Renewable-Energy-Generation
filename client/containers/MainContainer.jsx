@@ -4,6 +4,7 @@ import ChartContainer from './ChartContainer.jsx';
 // import ProfileSearches from '../components/ProfileSearches.jsx';
 import { connect } from 'react-redux'
 import { fetchData } from '../actions/stateActions.js'
+//import './styles.scss';
 
 const MainContainer = (props) => {
   const { data, loading, error, fetchData } = props;
