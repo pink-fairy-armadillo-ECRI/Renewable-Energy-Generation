@@ -5,8 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "start": "concurrently \"nodemon server.js\" \"webpack serve --hot --progress\"",
-    "dev": "concurrently  \"cross-env NODE_ENV=development && nodemon server/index.js\" \"cross-env NODE_ENV=development && webpack serve\""
+    "start": "concurrently \"nodemon server/server.js\" \"webpack serve --hot --progress\"",
+    "dev": "concurrently  \"cross-env NODE_ENV=development && nodemon server/server.js\" \"cross-env NODE_ENV=development && webpack serve\""
   },
   "keywords": [],
   "author": "",

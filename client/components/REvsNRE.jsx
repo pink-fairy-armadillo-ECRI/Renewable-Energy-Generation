@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 import * as types from '../constants/actionTypes';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
-  const { chartData } = props;
-  // const chartData = [25,75];
+  const chartData = useSelector(state => state.states.data);
 
   useEffect(() => {
+    console.log(chartData);
     // Create or update the chart when the component mounts
     const ctx = document.getElementById('REvsNREChart');
     const myChart = new Chart(ctx, {
@@ -17,14 +18,14 @@ const REvsNRE = (props) => {
         datasets: [
           {
             label: 'Renewable Energy (RE)',
-            data: [chartData.re],
+            data: [chartData.re * 100],
             borderColor: 'rgb(50,205,50)',
             backgroundColor: 'rgb(50,205,50)',
             borderWidth: 1,
           },
           {
             label: 'Non-renewable Energy (NRE)',
-            data: [null, chartData.nre],
+            data: [null, chartData.nre * 100],
             borderColor: 'rgb(220,20,60)',
             backgroundColor: 'rgb(220,20,60)',
             borderWidth: 1,

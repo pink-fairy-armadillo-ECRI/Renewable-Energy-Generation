@@ -35,7 +35,11 @@ powerController.getStates = async (req, res, next) => {
 //This middleware takes the url query, a state name, and returns decimal percentage of Renewable Energy Generation vs Non-Renewable Energy Generation
 powerController.loadState = async (req, res, next) => {
   //pull state string from query on request
+  console.log('this is request body: ', req.body.state);
+  console.log('this is request query: ', req.query.state);
+
   const state = req.query.state
+  console.log('this is our state in loadState: ', state);
   if (typeof state !== 'string') return next({err: 'input should be a string'})
 
   const RE_QUERY = `SELECT SUM("Total_MW") AS Total_mw, SUM("Hydro_MW") AS Hydro_mw, SUM("Wind_MW") AS wind_mw, SUM("Solar_MW") AS solar_mw, SUM("Geo_MW") AS geo_mw, SUM("Bio_MW") AS bio_mw, SUM("HydroPS_MW") AS HydroPs_mw FROM power_plants WHERE power_plants."State" = '${state}';`

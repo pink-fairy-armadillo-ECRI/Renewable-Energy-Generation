@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 import * as types from '../constants/actionTypes';
 
@@ -6,6 +7,7 @@ import * as types from '../constants/actionTypes';
 const REBreakdown = (props) => {
   // const { chartData } = props;
   const chartData = [50, 12, 20, 18];
+  // const chartData = useSelector(state => state.states.data);
 
   useEffect(() => {
     const ctx = document.getElementById('REBreakdownChart');

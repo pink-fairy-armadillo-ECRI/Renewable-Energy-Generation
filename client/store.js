@@ -9,8 +9,7 @@ const store = createStore(
   reducers,
   composeWithDevTools(applyMiddleware(logger, thunk))
 );
-'/states/precent/:name'
-'/states/precent/texas'
+
 export default store;
 
 // npm install @babel/preset-react

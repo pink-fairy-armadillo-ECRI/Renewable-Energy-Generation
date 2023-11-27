@@ -2,18 +2,20 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
-const powerController = require('./controllers/powerController.js') 
+const powerController = require('./controllers/powerController.js')
+// const cors = require('cors');
 
 //parse JSON incoming request
+// app.use(cors());
 app.use(express.json());
 const statesRouter = express.Router()
 app.use('/api/states', statesRouter)
 
-
+// app.use
 //serve the root domain when app is loaded
 statesRouter.get('/', powerController.getStates, (req, res) => {
     //send 200 status, serve index.html file, and send array list of states to client
-    res.status(200).sendFile(path.join(__dirname, '../client/index.html')).send(res.locals.states);
+    res.status(200).json(res.locals.states); //sendFile(path.join(__dirname, '../client/index.html')).
 });
 
 
