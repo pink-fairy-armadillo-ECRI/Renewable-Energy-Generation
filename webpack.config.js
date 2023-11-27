@@ -6,7 +6,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 // https://www.npmjs.com/package/concurrently // What concurrently does
 
-
 module.exports = {
   mode: 'development',
   //entry set to WHATEVER the file is that holds all of the front-end logic (index.js is common)
@@ -16,7 +15,7 @@ module.exports = {
     filename: 'bundle.js',
     clean: true, //this will delete our dist/bundle.js after we stop running.
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   module: {
     //each rule will scan the dist folder
     //and evaluate the contents of a given module based on
@@ -33,10 +32,10 @@ module.exports = {
             options: {
               presets: [
                 ['@babel/preset-env', { targets: 'defaults' }],
-                ['@babel/preset-react', { targets: 'defaults' }]
-              ]
-            }
-          }  
+                ['@babel/preset-react', { targets: 'defaults' }],
+              ],
+            },
+          },
         ],
       },
       {
@@ -44,22 +43,23 @@ module.exports = {
         loader: 'json-loader',
         type: 'javascript/auto',
       },
-      {//assets module: deals with static files}
+      {
+        //assets module: deals with static files}
       },
       //CSS & SCSS & SASS
-      // {
-      //   test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
-      //   use: [
-      //     //Creates 'style' nodes from JS strings
-      //     'style-loader',
+      {
+        test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
+        use: [
+          //Creates 'style' nodes from JS strings
+          'style-loader',
 
-      //     //Translates CSS into CommonJS (?)
-      //     'css-loader',
+          //Translates CSS into CommonJS (?)
+          'css-loader',
 
-      //     //Compiles Sass to CSS
-      //     'sass-loader',
-      //   ],
-      // },
+          //Compiles Sass to CSS
+          'sass-loader',
+        ],
+      },
     ],
   },
   plugins: [
@@ -85,4 +85,3 @@ module.exports = {
     port: 8081,
   },
 };
-
