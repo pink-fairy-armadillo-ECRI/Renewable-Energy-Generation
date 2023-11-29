@@ -5,17 +5,18 @@ import * as types from '../constants/actionTypes';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const PieChart = (props) => {
+  const { chartId } = props;
   const chartData = useSelector(state => state.states.data);
   useEffect(() => {
     console.log(chartData);
     // Create or update the chart when the component mounts
-    const chartElement = document.getElementById('pieChart');
+    const chartElement = document.getElementById(chartId);
 
     if (chartData.percents){
         const myChart = new Chart(chartElement, {
-          type: 'pie',
+          type: 'doughnut',
           data: {
-            labels: [`Renewable Energy Generation ${Math.floor(chartData.re * 1000)/10}%`, `Non-Renewable Energy Generation ${Math.floor(chartData.nre * 1000)/10}`],
+            labels: [`Renewable Energy Generation ${Math.floor(chartData.re * 1000)/10}%`, `Non-Renewable Energy Generation ${Math.floor(chartData.nre * 1000)/10}%`],
             datasets: [
               {
                 data: [chartData.re * 100, chartData.nre * 100],
@@ -56,7 +57,7 @@ const PieChart = (props) => {
 
   return(
     <div className="progressChart">
-      <canvas id="pieChart"></canvas>
+      <canvas id={chartId}></canvas>
     </div>
   )
 }
