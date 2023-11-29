@@ -72,6 +72,7 @@ export const fetchData = (state) => {
     dispatch(fetchDataRequest())
     axios.post(`/api/states/data?state=` + state)
       .then(response => {
+        console.log("AAAGAGGGGGGGGHHHHHHHHHH IM IN FETCH DATA")
         console.log('this is post response', response)
         const users = response.data;
         console.log('this is inFecthData users', users)

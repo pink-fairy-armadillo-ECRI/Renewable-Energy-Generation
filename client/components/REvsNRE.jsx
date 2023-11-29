@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 import * as types from '../constants/actionTypes';
-//import './styles.scss';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
@@ -75,8 +74,9 @@ const REvsNRE = (props) => {
   }, [chartData]); // dependency array; when the values change, the effect will run
 
   return(
-    <div>
-      <canvas id="REvsNREChart" width="4" height="1"></canvas>
+    <div className="progressChart">
+      {/* width="4" height="1" */}
+      <canvas id="REvsNREChart"></canvas>
     </div>
   )
 }

@@ -23,6 +23,7 @@ module.exports = {
     //eg, need rules for js/jsx, json, scss/sass, others?
     //TODO: add rules for any other filetypes we don't have yet
     rules: [
+      //babel loaders:
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
@@ -38,6 +39,7 @@ module.exports = {
           },
         ],
       },
+      //json loader:
       {
         test: /\.json$/,
         loader: 'json-loader',
@@ -46,20 +48,20 @@ module.exports = {
       {
         //assets module: deals with static files}
       },
-      //CSS & SCSS & SASS
-      // {
-      //   test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
-      //   use: [
-      //     //Creates 'style' nodes from JS strings
-      //     'style-loader',
+      //CSS & SCSS & SASS loaders:
+      {
+        test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
+        use: [
+          //Creates 'style' nodes from JS strings
+          'style-loader',
 
-      //     //Translates CSS into CommonJS (?)
-      //     'css-loader',
+          //Translates CSS into CommonJS (?)
+          'css-loader',
 
-      //     //Compiles Sass to CSS
-      //     'sass-loader',
-      //   ],
-      // },
+          //Compiles Sass to CSS
+          'sass-loader',
+        ],
+      },
     ],
   },
   plugins: [
@@ -68,7 +70,7 @@ module.exports = {
       filename: './index.html',
     }),
     new CopyPlugin({
-      patterns: [{ from: './client/styles.css' }],
+      patterns: [{ from: './client/styles.scss' }],
     }),
   ],
 

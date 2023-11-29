@@ -4,7 +4,6 @@ import ChartContainer from './ChartContainer.jsx';
 // import ProfileSearches from '../components/ProfileSearches.jsx';
 import { connect } from 'react-redux'
 import { fetchData } from '../actions/stateActions.js'
-//import './styles.scss';
 
 const MainContainer = (props) => {
   const { data, loading, error, fetchData } = props;
@@ -13,13 +12,12 @@ const MainContainer = (props) => {
   const userInputSubmission = (userInputState) => {
     console.log('this is userInputState: ', userInputState);
     //fire the userinputstate variable to the post request function
-    console.log('this is userInputState', userInputState)
     fetchData(userInputState);
     console.log('this is data: ', data);
   };
   console.log('this is our chartDataOne: ', data);
   return(
-    <div className='main-container'>
+    <div className="mainContainer">
       {<InputContainer userInputSubmission={userInputSubmission} />}
       {loading ?<h1>loading</h1>: !error ? <ChartContainer/> : <h2>{error}</h2>}
     </div>

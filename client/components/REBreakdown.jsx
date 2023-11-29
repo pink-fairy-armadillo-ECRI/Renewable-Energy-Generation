@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 import * as types from '../constants/actionTypes';
-//import './styles.scss';
 
 // RE = Renewable Energy
 const REBreakdown = (props) => {
@@ -101,8 +100,8 @@ const REBreakdown = (props) => {
   }
 
   return(
-    <div>
-      <canvas id="REBreakdownChart" width="4" height="1"></canvas>
+    <div className="statsChart">
+      <canvas id="REBreakdownChart"></canvas>
     </div>
   )
 }
