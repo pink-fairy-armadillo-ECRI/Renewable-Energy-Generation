@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import REvsNRE from '../components/REvsNRE.jsx';
 import REBreakdown from '../components/REBreakdown.jsx';
-//import './styles.scss';
 
-const ChartContainer = (props) => {
-  // const { chartDataOne } = props;
-  
+const ChartContainer = () => {
   return (
     <div className='chart-container'>
       {<REvsNRE />}
-      {<REBreakdown  />}
+      {<REBreakdown />}
     </div>
-  )
-}
-
+  );
+};
 
 export default ChartContainer;

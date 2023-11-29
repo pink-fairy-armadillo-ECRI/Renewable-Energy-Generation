@@ -1,42 +1,24 @@
-// import HtmlWebPackPlugin from 'html-webpack-plugin';
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-// import CopyPlugin from 'copy-webpack-plugin';
-const CopyPlugin = require('copy-webpack-plugin');
-// import path from 'path';
 const path = require('path');
-// https://www.npmjs.com/package/concurrently // What concurrently does
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  //entry set to WHATEVER the file is that holds all of the front-end logic (index.js is common)
-  entry: './client/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    clean: true, //this will delete our dist/bundle.js after we stop running.
+  mode: process.env.NODE_ENV,
+  entry: {
+    src: './client/index.js',
   },
-  devtool: 'eval-source-map',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'build'),
+  },
   module: {
-    //each rule will scan the dist folder
-    //and evaluate the contents of a given module based on
-    //the 'test' key, which is usually a regex expression
-    //eg, need rules for js/jsx, json, scss/sass, others?
-    //TODO: add rules for any other filetypes we don't have yet
     rules: [
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                ['@babel/preset-env', { targets: 'defaults' }],
-                ['@babel/preset-react', { targets: 'defaults' }],
-              ],
-            },
-          },
-        ],
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
       },
       {
         test: /\.json$/,
@@ -44,46 +26,24 @@ module.exports = {
         type: 'javascript/auto',
       },
       {
-        //assets module: deals with static files}
+        test: /\.css/,
+        use: ['style-loader', 'css-loader'],
       },
-      //CSS & SCSS & SASS
-      // {
-      //   test: /\.s[ac]ss$/i, //matches .scss, and .sass files (do we need to modify this for normal css??)
-      //   use: [
-      //     //Creates 'style' nodes from JS strings
-      //     'style-loader',
-
-      //     //Translates CSS into CommonJS (?)
-      //     'css-loader',
-
-      //     //Compiles Sass to CSS
-      //     'sass-loader',
-      //   ],
-      // },
     ],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './client/index.html',
-      filename: './index.html',
-    }),
-    new CopyPlugin({
-      patterns: [{ from: './client/styles.css' }],
+    new HtmlWebpackPlugin({
+      title: 'Development',
+      template: './index.html',
     }),
   ],
-
-  //configure the webpack development environment server '
   devServer: {
-    proxy: {
-      '/api': 'http://localhost:3000'
-    },
     static: {
-      publicPath: '/',
-      directory: path.join(__dirname, 'dist'),
+      publicPath: '/build',
+      directory: path.resolve(__dirname, 'build'),
     },
-    // compress: true,
-    port: 8081,
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
   },
 };
-
-
