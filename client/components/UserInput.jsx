@@ -10,11 +10,9 @@ const UserInput = (props) => {
     fetchStates()
   }, [])
 
-  console.log("THIS IS ALSO FETCHDATA:", fetchData)
   const dropdownButton = (event) => {
     event.preventDefault();
     const option = document.getElementById("statesDropdown")
-    console.log("HITTING DROPDOWN BUTTON")
     fetchData(option.value)
   }
   const statesMapper = () => {
@@ -53,13 +51,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-/* 
-v
 
-volvo
-saab
-mercedes
-audi
-*/
 export default connect(mapStateToProps, mapDispatchToProps)(UserInput)
 // export default UserInput;
