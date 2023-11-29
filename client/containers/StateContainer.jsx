@@ -36,6 +36,7 @@ const StateContainer = () => {
                   weight: 5,
                   color: '#666',
                 });
+                layer.bindPopup(state.properties.name);
               },
               mouseout: (e) => {
                 const layer = e.target;
