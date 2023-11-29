@@ -1,18 +1,27 @@
 import React from 'react';
 import InputContainer from './InputContainer.jsx';
 import ChartContainer from './ChartContainer.jsx';
-import HeaderBar from '../components/HeaderBar.jsx';
+// import ProfileSearches from '../components/ProfileSearches.jsx';
+import { connect } from 'react-redux'
+import { fetchData } from '../actions/stateActions.js'
 
 const MainContainer = (props) => {
-  const { loading, error } = props;
-  console.log()
+  const { data, loading, error, fetchData } = props;
+  // add pertinent state here 
+  
+  const userInputSubmission = (userInputState) => {
+    console.log('this is userInputState: ', userInputState);
+    //fire the userinputstate variable to the post request function
+    fetchData(userInputState);
+    console.log('this is data: ', data);
+  };
+  console.log('this is our chartDataOne: ', data);
   return(
     <div className="mainContainer">
-      <HeaderBar />
-      <InputContainer />
+      {<InputContainer userInputSubmission={userInputSubmission} />}
       {loading ?<h1>loading</h1>: !error ? <ChartContainer/> : <h2>{error}</h2>}
     </div>
   );
 };
 
-export default MainContainer;
+export default  connect(mapStateToProps, mapDispatchToProps)(MainContainer);

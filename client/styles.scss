@@ -26,7 +26,19 @@
 // @mixin borderRad {
 // }
 
-.mainContainer{
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 1.5em;
+}
+
+.stateContainer {
+  min-height: 100%;
+  background-color: white;
+}
+
+.dataContainer {
   flex: auto;
   min-height: 100%;
   background-color: white;
@@ -34,7 +46,7 @@
   border-radius: 1em;
   padding: 5% 10%;
 }
-.chartContainer{
+.chartContainer {
   border: 5px solid rgba(245, 125, 125, 0);
   display: grid;
   grid-template-columns: 1fr;
@@ -42,32 +54,26 @@
   align-items: center;
   justify-content: center;
 }
-.progressChart{
+.progressChart {
   border: 1px solid rgba(126, 255, 148, 0);
   min-width: 100%;
   max-width: 100%;
   min-height: 100%;
 }
-.statsChart{
+.statsChart {
   border: 5px solid rgba(214, 255, 90, 0);
   min-width: 100%;
   max-width: 100%;
   min-height: 100%;
 }
-.inputContainer{
+.inputContainer {
   border: 5px solid rgba(130, 255, 251, 0);
   font-family: Roboto;
   text-align: center;
 }
-#statesDropdown{
-height: 50%;
+#statesDropdown {
+  height: 50%;
 }
-
-
-
-
-
-
 
 // //some boilerplate for add'l mixins
 // @mixin pseudo($display: block, $pos: absolute, $content: '') {

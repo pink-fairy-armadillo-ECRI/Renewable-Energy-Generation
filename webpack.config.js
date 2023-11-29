@@ -62,6 +62,10 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
@@ -77,7 +81,7 @@ module.exports = {
   //configure the webpack development environment server '
   devServer: {
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': 'http://localhost:3000',
     },
     static: {
       publicPath: '/',
@@ -87,5 +91,3 @@ module.exports = {
     port: 8081,
   },
 };
-
-
