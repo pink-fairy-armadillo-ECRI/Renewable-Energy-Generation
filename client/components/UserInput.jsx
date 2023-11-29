@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { fetchStates } from '../actions/stateActions.js';
 import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
 const UserInput = (props) => {
-  const { fetchStates, loading, userInputSubmission } = props;
-
+  const { states, fetchStates, loading, error, dispatch, userInputSubmission } = props;
   const [inputValue, setInputValue] = useState('');
-
+  // SELECT table FROM database WHERE state LIKE 'AL%'
+  console.log('this is loadingStates: ', loading);
+  console.log('this is states: ', states);
+  console.log('this is our error: ', error);
   useEffect(() => {
-    fetchStates();
-  }, []);
+    fetchStates()
+  }, [])
 
   const handleInputChange = (e) => {
     const option = document.getElementById("statesDropdown")
     console.log("AHJKAHSDJKAHSKJDHKASJHDJKASHDJKAHSDKJHAJKSDHKAJ", option.value)
     console.log(e.target.value)
     setInputValue(e.target.value);
-  };
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -62,13 +65,22 @@ const mapStateToProps = state => {
   return {
     states: state.states.states,
     loading: state.states.loadingStates,
-    error: state.states.error,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
+    error: state.states.error
+  }
+}
+const mapDispatchToProps = dispatch => {
   return {
     fetchStates: () => dispatch(fetchStates()),
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInput);
+/* 
+v
+
+volvo
+saab
+mercedes
+audi
+*/
+export default connect(mapStateToProps, mapDispatchToProps)(UserInput)
+// export default UserInput;

@@ -1,25 +1,43 @@
+// import HtmlWebPackPlugin from 'html-webpack-plugin';
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+// import CopyPlugin from 'copy-webpack-plugin';
+const CopyPlugin = require('copy-webpack-plugin');
+// import path from 'path';
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// https://www.npmjs.com/package/concurrently // What concurrently does
 
 module.exports = {
-  mode: process.env.NODE_ENV,
-  entry: {
-    src: './client/index.js',
-  },
+  mode: 'development',
+  //entry set to WHATEVER the file is that holds all of the front-end logic (index.js is common)
+  entry: './client/index.js',
   output: {
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
+    clean: true, //this will delete our dist/bundle.js after we stop running.
   },
+  devtool: 'eval-source-map',
   module: {
+    //each rule will scan the dist folder
+    //and evaluate the contents of a given module based on
+    //the 'test' key, which is usually a regex expression
+    //eg, need rules for js/jsx, json, scss/sass, others?
+    //TODO: add rules for any other filetypes we don't have yet
     rules: [
       //babel loaders:
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', { targets: 'defaults' }],
+                ['@babel/preset-react', { targets: 'defaults' }],
+              ],
+            },
+          },
+        ],
       },
       //json loader:
       {
@@ -28,8 +46,7 @@ module.exports = {
         type: 'javascript/auto',
       },
       {
-        test: /\.css/,
-        use: ['style-loader', 'css-loader'],
+        //assets module: deals with static files}
       },
       //CSS & SCSS & SASS loaders:
       {
@@ -52,7 +69,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new HtmlWebPackPlugin({
       template: './client/index.html',
       filename: './index.html',
     }),
@@ -60,16 +77,17 @@ module.exports = {
       patterns: [{ from: './client/styles.scss' }],
     }),
   ],
+
+  //configure the webpack development environment server '
   devServer: {
     proxy: {
       '/api': 'http://localhost:3000',
     },
     static: {
-      publicPath: '/build',
-      directory: path.resolve(__dirname, 'build'),
+      publicPath: '/',
+      directory: path.join(__dirname, 'dist'),
     },
-    proxy: {
-      '/api': 'http://localhost:3000',
-    },
+    // compress: true,
+    port: 8081,
   },
 };

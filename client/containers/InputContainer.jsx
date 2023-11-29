@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UserInput from '../components/UserInput.jsx';
 
 const InputContainer = (props) => {

@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 import * as types from '../constants/actionTypes';
 
-const REvsNRE = () => {
-  const chartData = useSelector((state) => state.states.data);
+// RE = Renewable Energy, NRE = Non-renewable Energy
+const REvsNRE = (props) => {
+  const chartData = useSelector(state => state.states.data);
 
   useEffect(() => {
+    console.log(chartData);
+    // Create or update the chart when the component mounts
     const ctx = document.getElementById('REvsNREChart');
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [
-          'Renewable Energy Generation',
-          'Non-Renewable Energy Generation',
-        ],
+        labels: ['Renewable Energy Generation', 'Non-Renewable Energy Generation'],
         datasets: [
           {
             label: 'Renewable Energy (RE)',
@@ -55,6 +55,7 @@ const REvsNRE = () => {
           },
           tooltip: {
             callbacks: {
+              // Modifies the info when hovering over data
               label: function (context) {
                 const datasetLabel = context.dataset.label || '';
                 const value = context.parsed.y || 0;
@@ -66,17 +67,18 @@ const REvsNRE = () => {
       },
     });
 
+    // Update the chart data when the component unmounts
     return () => {
       myChart.destroy();
     };
-  }, [chartData]);
+  }, [chartData]); // dependency array; when the values change, the effect will run
 
   return(
     <div className="progressChart">
       {/* width="4" height="1" */}
       <canvas id="REvsNREChart"></canvas>
     </div>
-  );
-};
+  )
+}
 
 export default REvsNRE;
