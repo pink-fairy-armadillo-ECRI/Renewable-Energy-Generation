@@ -29,8 +29,8 @@ powerController.getStates = async (req, res, next) => {
 powerController.loadState = async (req, res, next) => {
   const state = req.query.state;
 
-  if (typeof state !== 'string')
-    return next({ err: 'input should be a string' });
+  const RE_QUERY = `SELECT SUM("Total_MW") AS Total_mw, SUM("Hydro_MW") AS Hydro_mw, SUM("Wind_MW") AS wind_mw, SUM("Solar_MW") AS solar_mw, SUM("Geo_MW") AS geo_mw, SUM("Bio_MW") AS bio_mw, SUM("HydroPS_MW") AS HydroPs_mw FROM power_plants WHERE power_plants."State" ILIKE '${state}';`;
+  const PLANTS_QUERY = `SELECT power_plants."Plant_Name", power_plants."Total_MW" FROM "public"."power_plants" WHERE power_plants."State" ILIKE '${state}' ORDER BY power_plants."Total_MW" DESC LIMIT 5 ;`;
 
   try {
     const RE_QUERY = `SELECT SUM("Total_MW") AS Total_mw, SUM("Hydro_MW") AS Hydro_mw, SUM("Wind_MW") AS wind_mw, SUM("Solar_MW") AS solar_mw, SUM("Geo_MW") AS geo_mw, SUM("Bio_MW") AS bio_mw, SUM("HydroPS_MW") AS HydroPs_mw FROM power_plants WHERE power_plants."State" = '${state}';`;

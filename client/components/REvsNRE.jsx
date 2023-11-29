@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
+import * as types from '../constants/actionTypes';
 
 const REvsNRE = () => {
   const chartData = useSelector((state) => state.states.data);
@@ -70,9 +71,10 @@ const REvsNRE = () => {
     };
   }, [chartData]);
 
-  return (
-    <div>
-      <canvas id='REvsNREChart' width='4' height='1'></canvas>
+  return(
+    <div className="progressChart">
+      {/* width="4" height="1" */}
+      <canvas id="REvsNREChart"></canvas>
     </div>
   );
 };

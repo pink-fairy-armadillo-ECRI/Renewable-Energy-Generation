@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
+import * as types from '../constants/actionTypes';
 
 const REBreakdown = () => {
   const chartData = useSelector((state) => state.states.data);
@@ -96,9 +97,9 @@ const REBreakdown = () => {
     }, [chartData]);
   }
 
-  return (
-    <div>
-      <canvas id='REBreakdownChart' width='4' height='1'></canvas>
+  return(
+    <div className="statsChart">
+      <canvas id="REBreakdownChart"></canvas>
     </div>
   );
 };

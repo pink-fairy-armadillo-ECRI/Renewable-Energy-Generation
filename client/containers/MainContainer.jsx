@@ -1,43 +1,16 @@
 import React from 'react';
-import InputContainer from './InputContainer.jsx';
-import ChartContainer from './ChartContainer.jsx';
-import { connect } from 'react-redux';
-import { fetchData } from '../actions/stateActions.js';
+import DataContainer from './DataContainer.jsx';
+import StateContainer from './StateContainer.jsx';
 
-const MainContainer = (props) => {
-  const { loading, error, fetchData } = props;
-  // add pertinent state here
-
-  const userInputSubmission = (userInputState) => {
-    fetchData(userInputState);
-  };
-
+const MainContainer = () => {
   return (
-    <div className='main-container'>
-      {<InputContainer userInputSubmission={userInputSubmission} />}
-      {loading ? (
-        <h1>loading</h1>
-      ) : !error ? (
-        <ChartContainer />
-      ) : (
-        <h2>{error}</h2>
-      )}
+    <div className='mainContainer'>
+      <div className='stateContainer'>
+        <StateContainer />
+      </div>
+      <DataContainer />
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.states.data,
-    loading: state.states.loadingData,
-    error: state.states.error,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchData: (data) => dispatch(fetchData(data)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default MainContainer;

@@ -5,7 +5,7 @@ const InputContainer = (props) => {
   const { dispatch, userInputSubmission } = props;
 
   return (
-    <div className='input-container'>
+    <div>
       {
         <UserInput
           dispatch={dispatch}

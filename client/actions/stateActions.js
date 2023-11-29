@@ -59,10 +59,12 @@ export const fetchDataFailure = (error) => {
 
 export const fetchData = (state) => {
   return (dispatch) => {
-    dispatch(fetchDataRequest());
-    axios
-      .post(`/api/states/data?state=` + state)
-      .then((response) => {
+    console.log('this is state in actions: ', state);
+    dispatch(fetchDataRequest())
+    axios.post(`/api/states/data?state=` + state)
+      .then(response => {
+        console.log("AAAGAGGGGGGGGHHHHHHHHHH IM IN FETCH DATA")
+        console.log('this is post response', response)
         const users = response.data;
         dispatch(fetchDataSuccess(users));
       })
