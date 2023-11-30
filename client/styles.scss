@@ -26,6 +26,7 @@
 // @mixin borderRad {
 // }
 
+/* Data Container */
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -44,52 +45,43 @@
   justify-content: center;
   align-items: center;
   border: 5px solid rgb(225, 225, 225);
+  background-color: rgb(225, 225, 225);
   border-radius: 1em;
   width: 30%;
 }
 
-.dataContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100%;
-  background-color: white;
-  border: 5px solid rgb(225, 225, 225);
-  border-radius: 1em;
-  padding: 5% 10%;
-}
-.chartContainer {
-  border: 5px solid rgba(245, 125, 125, 0);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
-  justify-content: center;
-}
-.progressChart {
-  border: 1px solid rgba(126, 255, 148, 0);
-  width: 100%;
-}
-.comparisonChart {
-  border: 3px solid rgba(126, 255, 148, 255);
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-}
-.comparisonChart {
-  border: 3px solid rgba(126, 255, 148, 255);
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-}
 .statsChart {
   height: 40%;
   width: 90%;
 }
+
+/* Data Container */
+.dataContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+  border: 5px solid rgb(225, 225, 225);
+  background-color: rgb(225, 225, 225);
+  border-radius: 1em;
+  padding: 5em 10em;
+}
+
+.datumContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
 .inputContainer {
-  border: 5px solid rgba(130, 255, 251, 0);
   font-family: Roboto;
   text-align: center;
 }
-#statesDropdown {
-  height: 50%;
+
+.chartContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 65%;
+  gap: 3em;
 }
