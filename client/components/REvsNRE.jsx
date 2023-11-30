@@ -9,20 +9,24 @@ const labelColor = 'rgb(200, 200, 200)';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
+  const { chartId } = props;
   const chartData = useSelector(state => state.states.data);
+  // const chartData = props.compareStateData;
 
   useEffect(() => {
-    console.log(chartData);
-    // Create or update the chart when the component mounts
-    const ctx = document.getElementById('REvsNREChart');
-    const myChart = new Chart(ctx, {
+
+    const chartElement = document.getElementById(chartId);
+    const myChart = new Chart(chartElement, {
       type: 'bar',
       data: {
-        labels: ['Renewable Energy Generation', 'Non-Renewable Energy Generation'],
+        labels: [
+          'Renewable Energy Generation',
+          'Non-Renewable Energy Generation',
+        ],
         datasets: [
           {
             label: 'Renewable Energy (RE)',
-            data: [chartData.re * 100],
+            data: [chartData.re],
             borderColor: rnColor,
             backgroundColor: rnColor,
             borderWidth: 1,
@@ -30,7 +34,7 @@ const REvsNRE = (props) => {
           },
           {
             label: 'Non-renewable Energy (NRE)',
-            data: [null, chartData.nre * 100],
+            data: [null, chartData.nre],
             borderColor: nreColor,
             backgroundColor: nreColor,
             borderWidth: 1,
@@ -88,14 +92,14 @@ const REvsNRE = (props) => {
     return () => {
       myChart.destroy();
     };
-  }, [chartData]); // dependency array; when the values change, the effect will run
+  }, [chartData]); // dependency array; when the values change, the useEffect will run
 
-  return(
-    <div className="progressChart">
+  return (
+    <div className='statsChart'>
       {/* width="4" height="1" */}
-      <canvas id="REvsNREChart"></canvas>
+      <canvas id={chartId}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default REvsNRE;

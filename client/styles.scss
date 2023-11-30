@@ -35,6 +35,16 @@ $boxBackground: #42476b;
   border: 0px;
 }
 
+$siteBackground: #25283B;
+$boxBorder: #12131c;
+$boxBackground: #42476b;
+
+#root {
+  background-color: $siteBackground;
+  border: 0px;
+}
+
+/* Data Container */
 .mainContainer {
 
   display: flex;
@@ -55,69 +65,53 @@ $boxBackground: #42476b;
 }
 
 .stateContainer {
-  min-height: 100%;
-  background-color: $boxBackground;
+  display: flex;
+  gap: 1em;
 }
 
-.dataContainer {
-  flex: auto;
-  min-height: 100%;
-  background-color: $boxBackground;
-  border: 2px solid rgb(225, 225, 225);
-  border-radius: 1em;
-  padding: 5% 10%;
-}
-.chartContainer {
-  border: 5px solid rgba(245, 125, 125, 0);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
+.stateDetail {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  border: 5px solid rgb(225, 225, 225);
+  background-color: $boxBackground;
+  border-radius: 1em;
+  width: 30%;
 }
-.progressChart {
-  border: 1px solid rgba(126, 255, 148, 0);
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-}
+
 .statsChart {
-  border: 5px solid rgba(214, 255, 90, 0);
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
+  height: 40%;
+  width: 90%;
 }
+
+/* Data Container */
+.dataContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+  border: 5px solid rgb(225, 225, 225);
+  background-color: $boxBackground;
+  border-radius: 1em;
+  padding: 5em 10em;
+}
+
+.datumContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
 .inputContainer {
-  border: 5px solid rgba(130, 255, 251, 0);
   font-family: Roboto;
   text-align: center;
 }
-#statesDropdown {
-  height: 50%;
+
+.chartContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 65%;
+  gap: 3em;
 }
-
-// //some boilerplate for add'l mixins
-// @mixin pseudo($display: block, $pos: absolute, $content: '') {
-//   content: $content;
-//   display: $display;
-//   position: $pos;
-// }
-
-// /*Uses for keyframe*/
-// @mixin keyframes($animation-name) {
-//   @-webkit-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-moz-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-ms-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-o-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @keyframes #{$animation-name} {
-//     @content;
-//   }
-// }
