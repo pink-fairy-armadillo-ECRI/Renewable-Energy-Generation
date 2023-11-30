@@ -10,6 +10,7 @@ const DetailedPieChart = (props) => {
   const nuclearColor = '#F7B32B';
 
   const labelColor = 'white';
+
   Chart.defaults.color = labelColor;
 
   const { index } = props;
