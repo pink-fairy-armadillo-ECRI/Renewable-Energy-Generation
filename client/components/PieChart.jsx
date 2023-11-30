@@ -2,27 +2,35 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
+// const rnColor = '#D3EEB6'; //older lighter green
+const rnColor = '#ACEE52'; //newer more saturated green
+const nreColor = '#F77028';
+
+const labelColor = 'white';
+Chart.defaults.color = labelColor;
+
 const PieChart = (props) => {
   const { index } = props;
-  const chartDataObj = useSelector(state => state.states.compareStatesData);
+  const chartDataObj = useSelector((state) => state.states.compareStatesData);
   useEffect(() => {
-    
     const chartElement = document.getElementById('pieChart' + index);
-    
-    if (chartDataObj[index]){
 
-      const chartData = chartDataObj[index]
-      const { re, nre, name} = chartData
- 
+    if (chartDataObj[index]) {
+      const chartData = chartDataObj[index];
+      const { re, nre, name } = chartData;
+
       const myChart = new Chart(chartElement, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
-          labels: [`Renewable Energy Generation ${re}%`, `Non-Renewable Energy Generation ${nre}%`],
+          labels: [
+            `Renewable Energy Generation ${re}%`,
+            `Non-Renewable Energy Generation ${nre}%`,
+          ],
           datasets: [
             {
               data: [re, nre],
               borderColor: ['rgb(255,255,255)', 'rgb(255, 255, 255)'],
-              backgroundColor: ['rgb(50,205,50)', 'rgb(220,20,60)'],
+              backgroundColor: [rnColor, nreColor],
               borderWidth: 0,
             },
           ],
@@ -30,25 +38,13 @@ const PieChart = (props) => {
         options: {
           responsive: true,
           plugins: {
-              tooltip: {
-                  callbacks: {
-                    label: function (context) {
-                      const label = context.dataset.label
-                      const datasetLabel = label || '';
-                      const value = label || 0;
-                      return `${datasetLabel}: ${value}%`;
-                    },
-                  },
-                },
             title: {
               display: true,
               text: `Renewable vs Non-Renewable Energy Generation from ${name}`,
-              fontSize: 10,
             },
             title: {
               display: true,
               text: 'Percent Non-renewable vs Renewable Energy Generation by State',
-              fontSize: 10,
             },
           },
         },
@@ -59,8 +55,8 @@ const PieChart = (props) => {
     }
   }, [chartDataObj[index]]); // dependency array; when the values change, the useEffect will run
 
-  return(
-    <div className="comparisonChart">
+  return (
+    <div className='comparisonChart'>
       <canvas id={'pieChart' + index}></canvas>
     </div>
   );
