@@ -18,6 +18,7 @@ const REvsNRE = (props) => {
 
   useEffect(() => {
     const chartElement = document.getElementById(chartId);
+
     const myChart = new Chart(chartElement, {
       type: 'bar',
       data: {

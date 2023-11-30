@@ -10,6 +10,8 @@ const nuclearColor = '#F7B32B';
 
 const labelColor = 'white';
 
+Chart.defaults.color = labelColor;
+
 // RE = Renewable Energy
 const REBreakdown = (props) => {
   const { chartId } = props;
@@ -87,6 +89,9 @@ const REBreakdown = (props) => {
             },
           },
           plugins: {
+            legend: {
+              display: false,
+            },
             title: {
               display: true,
               text: 'Percent of Total State Renewable Energy Generation by Type',

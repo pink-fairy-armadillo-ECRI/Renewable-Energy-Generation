@@ -7,6 +7,7 @@ const rnColor = '#ACEE52'; //newer more saturated green
 const nreColor = '#F77028';
 
 const labelColor = 'white';
+
 Chart.defaults.color = labelColor;
 
 const PieChart = (props) => {
