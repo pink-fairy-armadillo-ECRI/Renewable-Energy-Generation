@@ -1,65 +1,69 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
-import * as types from '../constants/actionTypes';
 
-// RE = Renewable Energy, NRE = Non-renewable Energy
 const PieChart = (props) => {
-  const { chartId } = props;
-  const chartData = useSelector(state => state.states.data);
+  const { index } = props;
+  const chartDataObj = useSelector(state => state.states.compareStatesData);
   useEffect(() => {
-    console.log(chartData);
-    // Create or update the chart when the component mounts
-    const chartElement = document.getElementById(chartId);
+    
+    const chartElement = document.getElementById('pieChart' + index);
+    
+    if (chartDataObj[index]){
 
-    if (chartData.percents){
-        const myChart = new Chart(chartElement, {
-          type: 'doughnut',
-          data: {
-            labels: [`Renewable Energy Generation ${Math.floor(chartData.re * 1000)/10}%`, `Non-Renewable Energy Generation ${Math.floor(chartData.nre * 1000)/10}%`],
-            datasets: [
-              {
-                data: [chartData.re * 100, chartData.nre * 100],
-                borderColor: ['rgb(255,255,255)', 'rgb(255, 255, 255)'],
-                backgroundColor: ['rgb(50,205,50)', 'rgb(220,20,60)'],
-                borderWidth: 0,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                      // Modifies the info when hovering over data
-                      label: function (context) {
-                        const datasetLabel = context.dataset.label || '';
-                        const value = context.parsed.y || 0;
-                        return `${datasetLabel}: ${value}%`;
-                      },
+      const chartData = chartDataObj[index]
+      const { re, nre, name} = chartData
+ 
+      const myChart = new Chart(chartElement, {
+        type: 'doughnut',
+        data: {
+          labels: [`Renewable Energy Generation ${re}%`, `Non-Renewable Energy Generation ${nre}%`],
+          datasets: [
+            {
+              data: [re, nre],
+              borderColor: ['rgb(255,255,255)', 'rgb(255, 255, 255)'],
+              backgroundColor: ['rgb(50,205,50)', 'rgb(220,20,60)'],
+              borderWidth: 0,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+              tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      const label = context.dataset.label
+                      const datasetLabel = label || '';
+                      const value = label || 0;
+                      return `${datasetLabel}: ${value}%`;
                     },
                   },
-              title: {
-                display: true,
-                text: 'Percent Non-renewable vs Renewable Energy Generation by State',
-                fontSize: 10,
-              },
+                },
+            title: {
+              display: true,
+              text: `Renewable vs Non-Renewable Energy Generation from ${name}`,
+              fontSize: 10,
+            },
+            title: {
+              display: true,
+              text: 'Percent Non-renewable vs Renewable Energy Generation by State',
+              fontSize: 10,
             },
           },
-        });
-        return () => {
-          myChart.destroy();
-        };
+        },
+      });
+      return () => {
+        myChart.destroy();
+      };
     }
-
-    // Update the chart data when the component unmounts
-  }, [chartData]); // dependency array; when the values change, the effect will run
+  }, [chartDataObj[index]]); // dependency array; when the values change, the useEffect will run
 
   return(
-    <div className="progressChart">
-      <canvas id={chartId}></canvas>
+    <div className="comparisonChart">
+      <canvas id={'pieChart' + index}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default PieChart;

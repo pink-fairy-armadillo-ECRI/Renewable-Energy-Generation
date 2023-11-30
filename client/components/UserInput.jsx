@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { fetchStates } from '../actions/stateActions.js';
-import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
+import React from 'react';
+import states from '../assets/states.js'
 
 const UserInput = (props) => {
-  const { states, fetchStates, loading, error, dispatch, fetchData, userInputSubmission } = props;
-  // SELECT table FROM database WHERE state LIKE 'AL%'
-  useEffect(() => {
-    fetchStates()
-  }, [])
+  const { fetchData, index } = props;
 
   const dropdownButton = (event) => {
     event.preventDefault();
-    const option = document.getElementById("statesDropdown")
+    const option = document.getElementById('select' + index)
     fetchData(option.value)
   }
   const statesMapper = () => {
@@ -24,33 +18,16 @@ const UserInput = (props) => {
     return array
   }
 
-  return loading ? (
-  <div>Hi</div>
-  ) : (
+  return (
     <div className='inputContainer'>
-    <p>Search by state</p>
-    <form>
-      <label htmlFor="statesDropdown">Please select a state or territory: </label>
-      <select id="statesDropdown">{statesMapper()}</select>
-      <button onClick={dropdownButton} type="submit">Search</button>
-    </form>
-  </div>
+      <p>Search by state</p>
+      <form>
+        <label htmlFor={index}>Please select a state or territory: </label>
+        <select id={'select' + index}>{statesMapper()}</select>
+        <button onClick={dropdownButton} type="submit">Search</button>
+      </form>
+    </div>
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    states: state.states.states,
-    loading: state.states.loadingStates,
-    error: state.states.error
-  }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchStates: () => dispatch(fetchStates()),
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserInput)
-// export default UserInput;
+export default UserInput;

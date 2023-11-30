@@ -26,6 +26,7 @@
 // @mixin borderRad {
 // }
 
+/* Data Container */
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -34,69 +35,53 @@
 }
 
 .stateContainer {
-  min-height: 100%;
-  background-color: white;
+  display: flex;
+  gap: 1em;
 }
 
+.stateDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid rgb(225, 225, 225);
+  background-color: rgb(225, 225, 225);
+  border-radius: 1em;
+  width: 30%;
+}
+
+.statsChart {
+  height: 40%;
+  width: 90%;
+}
+
+/* Data Container */
 .dataContainer {
-  flex: auto;
-  min-height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background-color: white;
   border: 5px solid rgb(225, 225, 225);
+  background-color: rgb(225, 225, 225);
   border-radius: 1em;
-  padding: 5% 10%;
+  padding: 5em 10em;
 }
-.chartContainer {
-  border: 5px solid rgba(245, 125, 125, 0);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+
+.datumContainer {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 2em;
 }
-.progressChart {
-  border: 1px solid rgba(126, 255, 148, 0);
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-}
-.statsChart {
-  border: 5px solid rgba(214, 255, 90, 0);
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-}
+
 .inputContainer {
-  border: 5px solid rgba(130, 255, 251, 0);
   font-family: Roboto;
   text-align: center;
 }
-#statesDropdown {
-  height: 50%;
+
+.chartContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 65%;
+  gap: 3em;
 }
-
-// //some boilerplate for add'l mixins
-// @mixin pseudo($display: block, $pos: absolute, $content: '') {
-//   content: $content;
-//   display: $display;
-//   position: $pos;
-// }
-
-// /*Uses for keyframe*/
-// @mixin keyframes($animation-name) {
-//   @-webkit-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-moz-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-ms-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-o-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @keyframes #{$animation-name} {
-//     @content;
-//   }
-// }

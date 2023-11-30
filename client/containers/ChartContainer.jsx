@@ -1,20 +1,15 @@
 import React from 'react';
-import REvsNRE from '../components/REvsNRE.jsx';
 import PieChart from '../components/PieChart.jsx';
-import REBreakdown from '../components/REBreakdown.jsx';
-import InputContainer from './InputContainer.jsx';
+import DetailedPieChart from '../components/DetailedPieChart.jsx';
 
 const ChartContainer = (props) => {
-
+  const { index } = props;
   return (
     <div className='chartContainer'>
-      <REvsNRE />
-      <REBreakdown />
-      <PieChart chartId="1"/>
-      <PieChart chartId="2"/>
+      <PieChart index={index} />
+      <DetailedPieChart index={index} />
     </div>
-  )
-}
-
+  );
+};
 
 export default ChartContainer;

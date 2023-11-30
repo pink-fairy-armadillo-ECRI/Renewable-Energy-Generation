@@ -1,15 +1,14 @@
 import React from 'react';
-import InputContainer from './InputContainer.jsx';
+import InputContainer2 from './InputContainer2.jsx';
 import ChartContainer from './ChartContainer.jsx';
 
 const DatumContainer = (props) => {
-  const { loading, error } = props;
-  // add pertinent state here 
+  const { index } = props;
 
   return(
     <div className="datumContainer">
-      {<InputContainer />}
-      {loading ?<h1>loading</h1>: !error ? <ChartContainer/> : <h2>{error}</h2>}
+      <InputContainer2 index={index}/>
+      <ChartContainer index={index}/>
     </div>
   );
 };

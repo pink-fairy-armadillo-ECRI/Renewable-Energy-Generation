@@ -1,5 +1,4 @@
 import * as types from '../constants/stateTypes';
-import axios from 'axios';
 
 /*************************FETCH STATUS TO GET 52 STATES*************************/
 
@@ -26,23 +25,6 @@ export const fetchStateFailure = error => {
   }
 }
 
-/********************DISPATCHED METHOD********************/
-export const fetchStates = () => {
-  return (dispatch) => {
-    dispatch(fetchStateRequest())
-    axios.get('/api/states')
-      .then(response => {
-        const users = response.data;
-        dispatch(fetchStatesSuccess(users))
-      })
-      .catch(error => {
-        const errorMsg = error.message;
-        dispatch(fetchStateFailure(errorMsg))
-      })
-  }
-}
-/*************************FETCH TO GET RENEWABLE VS NON RENEWABLE*************************/
-
 /********************REQUEST STATUS********************/
 export const fetchDataRequest = () => {
   return {
@@ -63,6 +45,14 @@ export const fetchDataFailure = error => {
   return {
     type: types.FETCH_DATA_FAILURE,
     payload: error
+  }
+}
+
+/********************COMPARE STATE FUNCTIONALITY********************/
+export const fetchCompareStateData = data => {
+  return {
+    type: types.FETCH_COMPARE_STATE_DATA,
+    payload: data
   }
 }
 
