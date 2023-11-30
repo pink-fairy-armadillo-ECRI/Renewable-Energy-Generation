@@ -9,24 +9,11 @@ const HeaderBar = (props) => {
   const { data, loading, error, fetchData } = props
 
   return (
-    <div>
-      <h2> GIGAWHAT </h2>
+    <div className='headerbar'>
+      <h2> GIGAWATMAP </h2>
     </div>
   )
 };
 
-const mapStateToProps = state => {
-  return {
-    data: state.states.data,
-    loading: state.states.loadingData,
-    error: state.states.error
-  }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchData: (data) => dispatch(fetchData(data))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderBar);
+export default HeaderBar;

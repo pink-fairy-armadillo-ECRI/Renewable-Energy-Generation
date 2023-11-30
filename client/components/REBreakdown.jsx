@@ -2,6 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
+
+const solarColor = '#FCF6B1';
+const windColor = '#A9E5BB'; 
+const hydroColor = '#2D1E2F';
+const geoColor = '#F72C25';
+const nuclearColor = '#F7B32B';
+
 // RE = Renewable Energy
 const REBreakdown = (props) => {
   const chartData = useSelector(state => state.states.data);
@@ -18,36 +25,36 @@ const REBreakdown = (props) => {
             {
               label: 'Solar Power',
               data: [chartData.percents.solar_mw * 100],
-              borderColor: 'rgb(255,255,0)',
-              backgroundColor: 'rgb(255,255,0)',
+              borderColor: solarColor,
+              backgroundColor: solarColor,
               borderWidth: 1,
             },
             {
               label: 'Wind Power',
               data: [null, chartData.percents.wind_mw * 100],
-              borderColor: 'rgb(152,251,152)',
-              backgroundColor: 'rgb(152,251,152)',
+              borderColor: windColor,
+              backgroundColor: windColor,
               borderWidth: 1,
             },
             {
               label: 'HydroElectric Power',
               data: [null, null, chartData.percents.hydro_mw * 100],
-              borderColor: 'rgb(0,191,255)',
-              backgroundColor: 'rgb(0,191,255)',
+              borderColor: hydroColor,
+              backgroundColor: hydroColor,
               borderWidth: 1,
             },
             {
               label: 'Geothermal',
               data: [null, null, null, chartData.percents.geo_mw * 100],
-              borderColor: 'rgb(105,105,105)',
-              backgroundColor: 'rgb(105,105,105)',
+              borderColor: geoColor,
+              backgroundColor: geoColor,
               borderWidth: 1,
             },
             {
               label: 'Biomass Power',
               data: [null, null, null, null, chartData.percents.bio_mw * 100],
-              borderColor: 'rgb(139,0,139)',
-              backgroundColor: 'rgb(139,0,139)',
+              borderColor: nuclearColor,
+              backgroundColor: nuclearColor,
               borderWidth: 1,
             },
           ],
