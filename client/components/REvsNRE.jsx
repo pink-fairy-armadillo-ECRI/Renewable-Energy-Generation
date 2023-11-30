@@ -3,17 +3,20 @@ import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
-const REvsNRE = (props) => {
-  const chartData = useSelector(state => state.states.data);
+const REvsNRE = ({ chartId }) => {
+  const chartData = useSelector((state) => state.states.data);
 
   useEffect(() => {
     console.log(chartData);
     // Create or update the chart when the component mounts
-    const ctx = document.getElementById('REvsNREChart');
+    const ctx = document.getElementById(chartId);
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Renewable Energy Generation', 'Non-Renewable Energy Generation'],
+        labels: [
+          'Renewable Energy Generation',
+          'Non-Renewable Energy Generation',
+        ],
         datasets: [
           {
             label: 'Renewable Energy (RE)',
@@ -72,12 +75,12 @@ const REvsNRE = (props) => {
     };
   }, [chartData]); // dependency array; when the values change, the effect will run
 
-  return(
-    <div className="progressChart">
+  return (
+    <div className='statsChart'>
       {/* width="4" height="1" */}
-      <canvas id="REvsNREChart"></canvas>
+      <canvas id={chartId}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default REvsNRE;
