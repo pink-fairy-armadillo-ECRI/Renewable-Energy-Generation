@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
-
-//LIAM NOTE: instead of doing useSelector on state, do it on props, and pass in state into props from ChartContainer
 const REvsNRE = (props) => {
   const { chartId } = props;
   const chartData = useSelector(state => state.states.data);
@@ -16,7 +14,10 @@ const REvsNRE = (props) => {
     const myChart = new Chart(chartElement, {
       type: 'bar',
       data: {
-        labels: ['Renewable Energy Generation', 'Non-Renewable Energy Generation'],
+        labels: [
+          'Renewable Energy Generation',
+          'Non-Renewable Energy Generation',
+        ],
         datasets: [
           {
             label: 'Renewable Energy (RE)',
@@ -75,12 +76,12 @@ const REvsNRE = (props) => {
     };
   }, [chartData]); // dependency array; when the values change, the useEffect will run
 
-  return(
-    <div className="progressChart">
+  return (
+    <div className='statsChart'>
       {/* width="4" height="1" */}
       <canvas id={chartId}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default REvsNRE;

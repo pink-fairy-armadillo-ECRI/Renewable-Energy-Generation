@@ -45,6 +45,11 @@ const PieChart = (props) => {
               text: `Renewable vs Non-Renewable Energy Generation from ${name}`,
               fontSize: 10,
             },
+            title: {
+              display: true,
+              text: 'Percent Non-renewable vs Renewable Energy Generation by State',
+              fontSize: 10,
+            },
           },
         },
       });
@@ -58,7 +63,7 @@ const PieChart = (props) => {
     <div className="comparisonChart">
       <canvas id={'pieChart' + index}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default PieChart;

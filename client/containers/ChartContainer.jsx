@@ -11,8 +11,7 @@ const ChartContainer = (props) => {
           <DetailedPieChart index={index}/>
       </div>
     </div>
-  )
-}
-
+  );
+};
 
 export default ChartContainer;

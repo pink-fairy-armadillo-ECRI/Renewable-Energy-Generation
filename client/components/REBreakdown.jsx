@@ -10,11 +10,17 @@ const REBreakdown = (props) => {
   useEffect(() => {
     const chartElement = document.getElementById(chartId);
 
-    if(chartData.percents){
+    if (chartData.percents) {
       const myChart = new Chart(chartElement, {
         type: 'bar',
         data: {
-          labels: ['Solar Power', 'Wind Power', 'HydroElectric Power', 'Geothermal', 'Biomass Power'],
+          labels: [
+            'Solar Power',
+            'Wind Power',
+            'HydroElectric Power',
+            'Geothermal',
+            'Biomass Power',
+          ],
           datasets: [
             {
             
@@ -88,7 +94,7 @@ const REBreakdown = (props) => {
           },
         },
       });
-      
+
       // Update the chart data when the component unmounts
       return () => {
         myChart.destroy();
@@ -100,7 +106,7 @@ const REBreakdown = (props) => {
     <div className="statsChart">
       <canvas id={chartId}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default REBreakdown;
