@@ -4,12 +4,11 @@ import DatumContainer from './DatumContainer.jsx';
 const DataContainer = (props) => {
   const { loading, error } = props;
 
-  return(
-    <div className="dataContainer">
+  return (
+    <div className='dataContainer'>
       <DatumContainer />
     </div>
   );
 };
-
 
 export default DataContainer;

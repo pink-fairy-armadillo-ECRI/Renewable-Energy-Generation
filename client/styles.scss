@@ -49,8 +49,9 @@
 }
 
 .dataContainer {
-  flex: auto;
-  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20em;
   background-color: white;
   border: 5px solid rgb(225, 225, 225);
   border-radius: 1em;
