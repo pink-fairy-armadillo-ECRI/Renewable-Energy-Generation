@@ -66,6 +66,14 @@ export const fetchDataFailure = error => {
   }
 }
 
+/********************COMPARE STATE FUNCTIONALITY********************/
+export const fetchCompareStateData = data => {
+  return {
+    type: types.FETCH_COMPARE_STATE_DATA,
+    payload: data
+  }
+}
+
 /*************************FETCH TO GET BREAKDOWN*************************/
 
 // /********************REQUEST STATUS********************/

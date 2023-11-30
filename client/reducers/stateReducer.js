@@ -5,7 +5,8 @@ const initialState = {
   loadingData: false,
   states: [],
   data: {},
-  error: ''
+  error: '',
+  compareStatesData: {}
 };
 
 const userReducer = (state = initialState, action) => { 
@@ -44,6 +45,17 @@ const userReducer = (state = initialState, action) => {
         loadingData: false,
         data: action.payload,
         error: ''
+      }
+    case types.FETCH_COMPARE_STATE_DATA:
+      const index = action.payload.index;
+      const newObj = {...state.compareStatesData}
+      newObj[index] = action.payload
+
+      return {
+        ...state,
+        loadingData: false,
+        error: '',
+        compareStatesData: newObj
       }
     case types.FETCH_DATA_FAILURE:
       return {

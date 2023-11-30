@@ -39,7 +39,8 @@
 }
 
 .dataContainer {
-  flex: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   min-height: 100%;
   background-color: white;
   border: 5px solid rgb(225, 225, 225);
@@ -60,6 +61,12 @@
   max-width: 100%;
   min-height: 100%;
 }
+.comparisonChart {
+  border: 3px solid rgba(126, 255, 148, 255);
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+}
 .statsChart {
   border: 5px solid rgba(214, 255, 90, 0);
   min-width: 100%;
@@ -74,29 +81,3 @@
 #statesDropdown {
   height: 50%;
 }
-
-// //some boilerplate for add'l mixins
-// @mixin pseudo($display: block, $pos: absolute, $content: '') {
-//   content: $content;
-//   display: $display;
-//   position: $pos;
-// }
-
-// /*Uses for keyframe*/
-// @mixin keyframes($animation-name) {
-//   @-webkit-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-moz-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-ms-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @-o-keyframes #{$animation-name} {
-//     @content;
-//   }
-//   @keyframes #{$animation-name} {
-//     @content;
-//   }
-// }
