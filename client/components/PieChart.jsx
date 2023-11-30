@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
+import * as types from '../constants/actionTypes';
+
+const rnColor = '#D3EEB6';
+const nreColor = '#F77028';
 
 const PieChart = (props) => {
   const { index } = props;
@@ -23,7 +27,7 @@ const PieChart = (props) => {
             {
               data: [re, nre],
               borderColor: ['rgb(255,255,255)', 'rgb(255, 255, 255)'],
-              backgroundColor: ['rgb(50,205,50)', 'rgb(220,20,60)'],
+              backgroundColor: [rnColor, nreColor],
               borderWidth: 0,
             },
           ],

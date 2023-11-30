@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
+const rnColor = '#D3EEB6';
+const nreColor = '#F77028';
+
+const labelColor = 'rgb(200, 200, 200)';
+
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
   const { chartId } = props;
@@ -22,15 +27,16 @@ const REvsNRE = (props) => {
           {
             label: 'Renewable Energy (RE)',
             data: [chartData.re],
-            borderColor: 'rgb(50,205,50)',
-            backgroundColor: 'rgb(50,205,50)',
+            borderColor: rnColor,
+            backgroundColor: rnColor,
             borderWidth: 1,
+            color: labelColor
           },
           {
             label: 'Non-renewable Energy (NRE)',
             data: [null, chartData.nre],
-            borderColor: 'rgb(220,20,60)',
-            backgroundColor: 'rgb(220,20,60)',
+            borderColor: nreColor,
+            backgroundColor: nreColor,
             borderWidth: 1,
           },
         ],
@@ -39,11 +45,22 @@ const REvsNRE = (props) => {
         scales: {
           x: {
             stacked: true,
+            grid: {
+              display: false,
+              color: labelColor
+            },
+            ticks: {
+              color: labelColor
+            }
           },
           y: {
             max: 100,
             min: 0,
+            grid: {
+              color: labelColor
+            },
             ticks: {
+              color: labelColor,
               callback: (value) => {
                 return value + '%';
               },
@@ -55,6 +72,7 @@ const REvsNRE = (props) => {
             display: true,
             text: 'Percent Non-renewable vs Renewable Energy Generation by State',
             fontSize: 10,
+            color: labelColor
           },
           tooltip: {
             callbacks: {
