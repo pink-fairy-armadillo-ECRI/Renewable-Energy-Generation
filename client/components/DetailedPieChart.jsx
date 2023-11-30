@@ -3,6 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
 const DetailedPieChart = (props) => {
+  const solarColor = '#FCF6B1';
+  const windColor = '#A9E5BB';
+  const hydroColor = '#2D1E2F';
+  const geoColor = '#F72C25';
+  const nuclearColor = '#F7B32B';
+
+  const labelColor = 'white';
+  Chart.defaults.color = labelColor;
+
   const { index } = props;
   const chartDataObj = useSelector((state) => state.states.compareStatesData);
   useEffect(() => {
@@ -28,24 +37,27 @@ const DetailedPieChart = (props) => {
             {
               data: [solar_mw, wind_mw, hydro_mw, geo_mw, bio_mw],
               borderColor: [
-                'rgb(255,255,0)',
-                'rgb(152,251,152)',
-                'rgb(0,191,255)',
-                'rgb(105,105,105)',
-                'rgb(139,0,139)',
+                solarColor,
+                windColor,
+                hydroColor,
+                geoColor,
+                nuclearColor,
               ],
               backgroundColor: [
-                'rgb(255,255,0)',
-                'rgb(152,251,152)',
-                'rgb(0,191,255)',
-                'rgb(105,105,105)',
-                'rgb(139,0,139)',
+                solarColor,
+                windColor,
+                hydroColor,
+                geoColor,
+                nuclearColor,
               ],
               borderWidth: 1,
+              // pointHoverBackgroundColor: 'red',
+              hoverBackgroundColor: 'red',
             },
           ],
         },
         options: {
+          //hover?
           responsive: true,
           plugins: {
             title: {

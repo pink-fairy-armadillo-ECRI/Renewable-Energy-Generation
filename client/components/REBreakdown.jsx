@@ -2,17 +2,18 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
-
 const solarColor = '#FCF6B1';
-const windColor = '#A9E5BB'; 
+const windColor = '#A9E5BB';
 const hydroColor = '#2D1E2F';
 const geoColor = '#F72C25';
 const nuclearColor = '#F7B32B';
 
+const labelColor = 'white';
+
 // RE = Renewable Energy
 const REBreakdown = (props) => {
   const { chartId } = props;
-  const chartData = useSelector(state => state.states.data);
+  const chartData = useSelector((state) => state.states.data);
 
   useEffect(() => {
     const chartElement = document.getElementById(chartId);
@@ -30,7 +31,6 @@ const REBreakdown = (props) => {
           ],
           datasets: [
             {
-            
               label: 'Solar Power',
               data: [chartData.percents.solar_mw],
               borderColor: solarColor,
@@ -71,11 +71,15 @@ const REBreakdown = (props) => {
           scales: {
             x: {
               stacked: true,
+              ticks: {
+                color: labelColor,
+              },
             },
             y: {
               max: 100,
               min: 0,
               ticks: {
+                color: labelColor,
                 callback: (value) => {
                   return value + '%';
                 },
@@ -87,6 +91,7 @@ const REBreakdown = (props) => {
               display: true,
               text: 'Percent of Total State Renewable Energy Generation by Type',
               fontSize: 16,
+              color: labelColor,
             },
             tooltip: {
               callbacks: {
@@ -107,10 +112,10 @@ const REBreakdown = (props) => {
         myChart.destroy();
       };
     }
-    }, [chartData]); // dependency array; when the values change, the useEffect will run
+  }, [chartData]); // dependency array; when the values change, the useEffect will run
 
-  return(
-    <div className="statsChart">
+  return (
+    <div className='statsChart'>
       <canvas id={chartId}></canvas>
     </div>
   );

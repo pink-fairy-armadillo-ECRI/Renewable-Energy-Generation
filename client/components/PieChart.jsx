@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
-import * as types from '../constants/actionTypes';
 
-const rnColor = '#D3EEB6';
+// const rnColor = '#D3EEB6'; //older lighter green
+const rnColor = '#ACEE52'; //newer more saturated green
 const nreColor = '#F77028';
+
+const labelColor = 'white';
+Chart.defaults.color = labelColor;
 
 const PieChart = (props) => {
   const { index } = props;
@@ -17,7 +20,7 @@ const PieChart = (props) => {
       const { re, nre, name } = chartData;
 
       const myChart = new Chart(chartElement, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
           labels: [
             `Renewable Energy Generation ${re}%`,
@@ -38,12 +41,10 @@ const PieChart = (props) => {
             title: {
               display: true,
               text: `Renewable vs Non-Renewable Energy Generation from ${name}`,
-              fontSize: 10,
             },
             title: {
               display: true,
               text: 'Percent Non-renewable vs Renewable Energy Generation by State',
-              fontSize: 10,
             },
           },
         },

@@ -2,19 +2,21 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
 
-const rnColor = '#D3EEB6';
+//const rnColor = '#D3EEB6'; //old lighter green
+const rnColor = '#ACEE52'; //newer more saturated green
 const nreColor = '#F77028';
 
-const labelColor = 'rgb(200, 200, 200)';
+const labelColor = 'white';
+
+Chart.defaults.color = labelColor;
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
   const { chartId } = props;
-  const chartData = useSelector(state => state.states.data);
+  const chartData = useSelector((state) => state.states.data);
   // const chartData = props.compareStateData;
 
   useEffect(() => {
-
     const chartElement = document.getElementById(chartId);
     const myChart = new Chart(chartElement, {
       type: 'bar',
@@ -30,7 +32,6 @@ const REvsNRE = (props) => {
             borderColor: rnColor,
             backgroundColor: rnColor,
             borderWidth: 1,
-            color: labelColor
           },
           {
             label: 'Non-renewable Energy (NRE)',
@@ -45,20 +46,13 @@ const REvsNRE = (props) => {
         scales: {
           x: {
             stacked: true,
-            grid: {
-              display: false,
-              color: labelColor
-            },
             ticks: {
-              color: labelColor
-            }
+              color: labelColor,
+            },
           },
           y: {
             max: 100,
             min: 0,
-            grid: {
-              color: labelColor
-            },
             ticks: {
               color: labelColor,
               callback: (value) => {
@@ -68,11 +62,14 @@ const REvsNRE = (props) => {
           },
         },
         plugins: {
+          legend: {
+            display: false,
+          },
           title: {
             display: true,
             text: 'Percent Non-renewable vs Renewable Energy Generation by State',
             fontSize: 10,
-            color: labelColor
+            color: labelColor,
           },
           tooltip: {
             callbacks: {
