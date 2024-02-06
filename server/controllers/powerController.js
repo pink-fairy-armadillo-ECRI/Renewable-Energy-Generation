@@ -36,7 +36,6 @@ powerController.getStates = async (req, res, next) => {
 powerController.loadState = async (req, res, next) => {
   //pull state string from query on request
   const state = req.query.state
-  //TODO: finagle this to work with global error handler
   if (typeof state !== 'string') return next({err: 'input should be a string'})
 
   const RE_QUERY = `SELECT SUM("Total_MW") AS Total_mw, SUM("Hydro_MW") AS Hydro_mw, SUM("Wind_MW") AS wind_mw, SUM("Solar_MW") AS solar_mw, SUM("Geo_MW") AS geo_mw, SUM("Bio_MW") AS bio_mw, SUM("HydroPS_MW") AS HydroPs_mw FROM power_plants WHERE power_plants."State" = '${state}';`;

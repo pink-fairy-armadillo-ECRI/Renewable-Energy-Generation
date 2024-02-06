@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+//Color Palette Variables
+$primary: #2596f4;
+$secondary: #606f79;
+$tertiary: #8996a0;
+$lighter: #eaecef;
+$super: #f7fafc;
+$background: #b7daf1;
+
+//Mixins
+//Easy flexbox for page
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//pop-up / popout (magnify on hover) for chart bars (??)
+@mixin popUp {
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 3px 10px #d0c19f;
+  }
+}
+@mixin borderRad {
+}
+
+header {
+  margin-left: 20%;
+  margin-right: 20%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+#root {
+  body {
+    .main-container {
+      .input-container {
+        background-color: $background;
+
+        #search {
+          @include flexCenter;
+          border-radius: 0.75em;
+          color: $secondary;
+        }
+      }
+      .chart-container {
+        #REBreakdownChart {
+          @include popUp();
+        }
+        #REvsNREChart {
+          @include popUp();
+        }
+      }
+    }
+  }
+}
+
+//some boilerplate for add'l mixins
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+/*Uses for keyframe*/
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}

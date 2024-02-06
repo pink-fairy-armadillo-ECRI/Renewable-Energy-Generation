@@ -6,7 +6,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 // https://www.npmjs.com/package/concurrently // What concurrently does
 
-
 module.exports = {
   mode: 'development',
   //entry set to WHATEVER the file is that holds all of the front-end logic (index.js is common)
@@ -16,7 +15,7 @@ module.exports = {
     filename: 'bundle.js',
     clean: true, //this will delete our dist/bundle.js after we stop running.
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   module: {
     //each rule will scan the dist folder
     //and evaluate the contents of a given module based on
@@ -33,10 +32,10 @@ module.exports = {
             options: {
               presets: [
                 ['@babel/preset-env', { targets: 'defaults' }],
-                ['@babel/preset-react', { targets: 'defaults' }]
-              ]
-            }
-          }  
+                ['@babel/preset-react', { targets: 'defaults' }],
+              ],
+            },
+          },
         ],
       },
       {
@@ -44,7 +43,8 @@ module.exports = {
         loader: 'json-loader',
         type: 'javascript/auto',
       },
-      {//assets module: deals with static files}
+      {
+        //assets module: deals with static files}
       },
       //CSS & SCSS & SASS
       // {
@@ -74,15 +74,16 @@ module.exports = {
 
   //configure the webpack development environment server '
   devServer: {
-    // proxy: {
-    //   '/api': 'http://localhost:3000'
-    // },
+    proxy: {
+      '/api': 'http://localhost:3000'
+    },
     static: {
       publicPath: '/',
       directory: path.join(__dirname, 'dist'),
     },
     // compress: true,
-    port: 3000,
+    port: 8081,
   },
 };
+
 

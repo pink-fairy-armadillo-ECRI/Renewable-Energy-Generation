@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStates } from '../actions/stateActions.js'
-import { connect } from 'react-redux'
+import { fetchStates } from '../actions/stateActions.js';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
 const UserInput = (props) => {
-  const { states, fetchStates, loading, error } = props;
+  const { states, fetchStates, loading, error, dispatch, userInputSubmission } = props;
   const [inputValue, setInputValue] = useState('');
   // SELECT table FROM database WHERE state LIKE 'AL%'
- console.log('this is loadingStates: ', loading);
- console.log('this is states: ', states);
- console.log('this is our error: ', error);
-    useEffect(() => {
-      fetchStates()
-    }, [])
-  
-
+  console.log('this is loadingStates: ', loading);
+  console.log('this is states: ', states);
+  console.log('this is our error: ', error);
+  useEffect(() => {
+    fetchStates()
+  }, [])
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -22,6 +21,7 @@ const UserInput = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(inputValue);
+    userInputSubmission(inputValue);
   }
   
   return loading ? (
@@ -36,8 +36,7 @@ const UserInput = (props) => {
 
       {
       <select id="states">
-        {/* {<option></option>} */}
-        {/* {arrayOfStates.filter(()).map()} */}
+        {/* {arrayOfStates.map()} */}
       </select>}
     </form>
   </div>
@@ -53,10 +52,9 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    fetchStates: () => dispatch(fetchStates())
+    fetchStates: () => dispatch(fetchStates()),
   }
 }
-
 
 /* 
 v
