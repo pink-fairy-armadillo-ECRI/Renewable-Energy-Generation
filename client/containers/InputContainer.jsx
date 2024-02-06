@@ -1,14 +1,31 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import UserInput from '../components/UserInput.jsx';
-//import './styles.scss';
+import { useDispatch } from 'react-redux'
+import { fetchDataRequest, fetchCompareStateData, fetchDataFailure } from '../actions/stateActions.js';
+import axios from 'axios';
+
 
 const InputContainer = (props) => {
+  const { index } = props;
+  const dispatch = useDispatch();
 
-  const { dispatch, userInputSubmission } = props;
+  const fetchData = (state) => {
+    dispatch(fetchDataRequest())
+    axios.post(`/data?state=` + state)
+      .then(response => {
+        const data = response.data;
+        data.index = index;
+        dispatch(fetchCompareStateData(data))
+      })
+      .catch(error => {
+        const errorMsg = error.message;
+        dispatch(fetchDataFailure(errorMsg))
+      })
+  }
   
   return(
-    <div className='input-container'>
-      {<UserInput dispatch={dispatch} userInputSubmission={userInputSubmission}/>}
+    <div>
+      <UserInput dispatch={dispatch} fetchData={fetchData} index={index}/>
     </div>
   )
 }
