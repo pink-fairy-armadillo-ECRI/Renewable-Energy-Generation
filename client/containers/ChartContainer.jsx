@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import REvsNRE from '../components/REvsNRE.jsx';
-import REBreakdown from '../components/REBreakdown.jsx';
-//import './styles.scss';
+import React from 'react';
+import PieChart from '../components/PieChart.jsx';
+import DetailedPieChart from '../components/DetailedPieChart.jsx';
 
 const ChartContainer = (props) => {
-  // const { chartDataOne } = props;
-  
+  const { index } = props;
   return (
-    <div className='chart-container'>
-      {<REvsNRE />}
-      {<REBreakdown  />}
+    <div className='chartContainer'>
+      <PieChart index={index} />
+      <DetailedPieChart index={index} />
     </div>
-  )
-}
-
+  );
+};
 
 export default ChartContainer;

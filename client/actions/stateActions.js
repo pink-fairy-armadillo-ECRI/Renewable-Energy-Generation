@@ -1,5 +1,5 @@
 import * as types from '../constants/stateTypes';
-import axios from 'axios';
+
 /*************************FETCH STATUS TO GET 52 STATES*************************/
 
 /********************REQUEST STATUS********************/
@@ -25,23 +25,6 @@ export const fetchStateFailure = error => {
   }
 }
 
-/********************DISPATCHED METHOD********************/
-export const fetchStates = () => {
-  return (dispatch) => {
-    dispatch(fetchStateRequest())
-    axios.get('/api/states')
-      .then(response => {
-        const users = response.data;
-        dispatch(fetchStatesSuccess(users))
-      })
-      .catch(error => {
-        const errorMsg = error.message;
-        dispatch(fetchStateFailure(errorMsg))
-      })
-  }
-}
-/*************************FETCH TO GET RENEWABLE VS NON RENEWABLE*************************/
-
 /********************REQUEST STATUS********************/
 export const fetchDataRequest = () => {
   return {
@@ -65,24 +48,14 @@ export const fetchDataFailure = error => {
   }
 }
 
-/********************DISPATCHED METHOD********************/
-export const fetchData = (state) => {
-  return (dispatch) => {
-    console.log('this is state in actions: ', state);
-    dispatch(fetchDataRequest())
-    axios.post(`/api/states/data?state=` + state)
-      .then(response => {
-        console.log('this is post response', response)
-        const users = response.data;
-        console.log('this is inFecthData users', users)
-        dispatch(fetchDataSuccess(users))
-      })
-      .catch(error => {
-        const errorMsg = error.message;
-        dispatch(fetchDataFailure(errorMsg))
-      })
+/********************COMPARE STATE FUNCTIONALITY********************/
+export const fetchCompareStateData = data => {
+  return {
+    type: types.FETCH_COMPARE_STATE_DATA,
+    payload: data
   }
 }
+
 /*************************FETCH TO GET BREAKDOWN*************************/
 
 // /********************REQUEST STATUS********************/

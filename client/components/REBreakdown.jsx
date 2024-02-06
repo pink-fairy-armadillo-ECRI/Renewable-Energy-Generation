@@ -1,59 +1,70 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
-import * as types from '../constants/actionTypes';
-//import './styles.scss';
+
+const solarColor = '#FCF6B1';
+const windColor = '#A9E5BB';
+const hydroColor = '#2D1E2F';
+const geoColor = '#F72C25';
+const nuclearColor = '#F7B32B';
+
+const labelColor = 'white';
+
+Chart.defaults.color = labelColor;
 
 // RE = Renewable Energy
 const REBreakdown = (props) => {
-  const chartData = useSelector(state => state.states.data);
+  const { chartId } = props;
+  const chartData = useSelector((state) => state.states.data);
 
-  if(chartData.percents){
-    useEffect(() => {
-      console.log("AFTER CHANGES", chartData)
-      const ctx = document.getElementById('REBreakdownChart');
-      const myChart = new Chart(ctx, {
+  useEffect(() => {
+    const chartElement = document.getElementById(chartId);
+
+    if (chartData.percents) {
+      const myChart = new Chart(chartElement, {
         type: 'bar',
         data: {
-          labels: ['Solar Power', 'Wind Power', 'HydroElectric Power', 'Geothermal', 'Biomass Power'],
+          labels: [
+            'Solar Power',
+            'Wind Power',
+            'HydroElectric Power',
+            'Geothermal',
+            'Biomass Power',
+          ],
           datasets: [
             {
               label: 'Solar Power',
-              data: [chartData.percents.solar_mw * 100],
-              borderColor: 'rgb(255,255,0)',
-              backgroundColor: 'rgb(255,255,0)',
+              data: [chartData.percents.solar_mw],
+              borderColor: solarColor,
+              backgroundColor: solarColor,
               borderWidth: 1,
             },
             {
               label: 'Wind Power',
-              data: [null, chartData.percents.wind_mw * 100],
-              // data: chartData[2],
-              borderColor: 'rgb(152,251,152)',
-              backgroundColor: 'rgb(152,251,152)',
+              data: [null, chartData.percents.wind_mw],
+              borderColor: windColor,
+              backgroundColor: windColor,
               borderWidth: 1,
             },
             {
               label: 'HydroElectric Power',
-              data: [null, null, chartData.percents.hydro_mw * 100],
-              // data: chartData[2],
-              borderColor: 'rgb(0,191,255)',
-              backgroundColor: 'rgb(0,191,255)',
+              data: [null, null, chartData.percents.hydro_mw],
+              borderColor: hydroColor,
+              backgroundColor: hydroColor,
               borderWidth: 1,
             },
             {
               label: 'Geothermal',
-              data: [null, null, null, chartData.percents.geo_mw * 100],
-              // data: chartData[2],
-              borderColor: 'rgb(105,105,105)',
-              backgroundColor: 'rgb(105,105,105)',
+              data: [null, null, null, chartData.percents.geo_mw],
+              borderColor: geoColor,
+              backgroundColor: geoColor,
               borderWidth: 1,
             },
             {
               label: 'Biomass Power',
-              data: [null, null, null, null, chartData.percents.bio_mw * 100],
-              // data: chartData[2],
-              borderColor: 'rgb(139,0,139)',
-              backgroundColor: 'rgb(139,0,139)',
+              data: [null, null, null, null, chartData.percents.bio_mw],
+              borderColor: nuclearColor,
+              backgroundColor: nuclearColor,
               borderWidth: 1,
             },
           ],
@@ -62,11 +73,15 @@ const REBreakdown = (props) => {
           scales: {
             x: {
               stacked: true,
+              ticks: {
+                color: labelColor,
+              },
             },
             y: {
               max: 100,
               min: 0,
               ticks: {
+                color: labelColor,
                 callback: (value) => {
                   return value + '%';
                 },
@@ -74,10 +89,14 @@ const REBreakdown = (props) => {
             },
           },
           plugins: {
+            legend: {
+              display: false,
+            },
             title: {
               display: true,
               text: 'Percent of Total State Renewable Energy Generation by Type',
               fontSize: 16,
+              color: labelColor,
             },
             tooltip: {
               callbacks: {
@@ -97,14 +116,14 @@ const REBreakdown = (props) => {
       return () => {
         myChart.destroy();
       };
-    }, [chartData]); // dependency array; when the values change, the effect will run
-  }
+    }
+  }, [chartData]); // dependency array; when the values change, the useEffect will run
 
-  return(
-    <div>
-      <canvas id="REBreakdownChart" width="4" height="1"></canvas>
+  return (
+    <div className='statsChart'>
+      <canvas id={chartId}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default REBreakdown;
