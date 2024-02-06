@@ -1,34 +1,44 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Chart from 'chart.js/auto';
-import * as types from '../constants/actionTypes';
-//import './styles.scss';
+
+//const rnColor = '#D3EEB6'; //old lighter green
+const rnColor = '#ACEE52'; //newer more saturated green
+const nreColor = '#F77028';
+
+const labelColor = 'white';
+
+Chart.defaults.color = labelColor;
 
 // RE = Renewable Energy, NRE = Non-renewable Energy
 const REvsNRE = (props) => {
-  const chartData = useSelector(state => state.states.data);
+  const { chartId } = props;
+  const chartData = useSelector((state) => state.states.data);
+  // const chartData = props.compareStateData;
 
   useEffect(() => {
-    console.log(chartData);
-    // Create or update the chart when the component mounts
-    const ctx = document.getElementById('REvsNREChart');
-    const myChart = new Chart(ctx, {
+    const chartElement = document.getElementById(chartId);
+
+    const myChart = new Chart(chartElement, {
       type: 'bar',
       data: {
-        labels: ['Renewable Energy Generation', 'Non-Renewable Energy Generation'],
+        labels: [
+          'Renewable Energy Generation',
+          'Non-Renewable Energy Generation',
+        ],
         datasets: [
           {
             label: 'Renewable Energy (RE)',
-            data: [chartData.re * 100],
-            borderColor: 'rgb(50,205,50)',
-            backgroundColor: 'rgb(50,205,50)',
+            data: [chartData.re],
+            borderColor: rnColor,
+            backgroundColor: rnColor,
             borderWidth: 1,
           },
           {
             label: 'Non-renewable Energy (NRE)',
-            data: [null, chartData.nre * 100],
-            borderColor: 'rgb(220,20,60)',
-            backgroundColor: 'rgb(220,20,60)',
+            data: [null, chartData.nre],
+            borderColor: nreColor,
+            backgroundColor: nreColor,
             borderWidth: 1,
           },
         ],
@@ -37,11 +47,15 @@ const REvsNRE = (props) => {
         scales: {
           x: {
             stacked: true,
+            ticks: {
+              color: labelColor,
+            },
           },
           y: {
             max: 100,
             min: 0,
             ticks: {
+              color: labelColor,
               callback: (value) => {
                 return value + '%';
               },
@@ -49,10 +63,14 @@ const REvsNRE = (props) => {
           },
         },
         plugins: {
+          legend: {
+            display: false,
+          },
           title: {
             display: true,
             text: 'Percent Non-renewable vs Renewable Energy Generation by State',
             fontSize: 10,
+            color: labelColor,
           },
           tooltip: {
             callbacks: {
@@ -72,13 +90,14 @@ const REvsNRE = (props) => {
     return () => {
       myChart.destroy();
     };
-  }, [chartData]); // dependency array; when the values change, the effect will run
+  }, [chartData]); // dependency array; when the values change, the useEffect will run
 
-  return(
-    <div>
-      <canvas id="REvsNREChart" width="4" height="1"></canvas>
+  return (
+    <div className='statsChart'>
+      {/* width="4" height="1" */}
+      <canvas id={chartId}></canvas>
     </div>
-  )
-}
+  );
+};
 
 export default REvsNRE;
