@@ -5,3 +5,7 @@ export const addCardActionCreator = marketId => ({
   payload: marketId,
 });
 
+export const updateChartData = newData => ({
+  type: types.UPDATE_CHART_DATA,
+  payload: newData,
+});
