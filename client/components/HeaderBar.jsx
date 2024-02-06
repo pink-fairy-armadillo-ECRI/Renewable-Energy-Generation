@@ -4,12 +4,7 @@ const HeaderBar = (props) => {
   return (
     <div className='headerbar'>
       <h2>
-        {' '}
-        Renewable
-        <span>
-          <s> Energy </s>
-        </span>
-        Generation{' '}
+        {' '}Renewable Energy Generation{' '}
       </h2>
     </div>
   );
