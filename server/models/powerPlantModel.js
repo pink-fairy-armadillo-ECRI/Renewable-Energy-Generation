@@ -1,6 +1,3 @@
-
-//the hell is a pool
-//assuming pg is postgreSQL module?
 const { Pool } = require("pg");
 
 //bring in the Elephant-SQL database url
