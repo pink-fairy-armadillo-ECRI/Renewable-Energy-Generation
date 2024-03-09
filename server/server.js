@@ -8,8 +8,8 @@ const powerController = require('./controllers/powerController.js')
 //parse JSON incoming request
 // app.use(cors());
 app.use(express.json());
-const statesRouter = express.Router()
-app.use('/api/states', statesRouter)
+const statesRouter = express.Router();
+app.use('/api/states', statesRouter);
 
 // app.use
 //serve the root domain when app is loaded
